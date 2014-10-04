@@ -1,0 +1,9 @@
+﻿<Window x:Class="GraphView.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:controls="clr-namespace:GraphView.Framework.Controls;assembly=GraphView.Framework"
+        Title="MainWindow" Height="350" Width="525">
+    <Grid>
+        <controls:DiagramCanvasControl Diagram="{Binding Path=Diagram}"/>
+    </Grid>
+</Window>

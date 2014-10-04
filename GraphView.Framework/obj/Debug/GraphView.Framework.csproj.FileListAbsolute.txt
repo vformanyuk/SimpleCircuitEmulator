@@ -1,0 +1,10 @@
+c:\Projects\GraphView\GraphView.Framework\bin\Debug\GraphView.Framework.dll
+c:\Projects\GraphView\GraphView.Framework\bin\Debug\GraphView.Framework.pdb
+c:\Projects\GraphView\GraphView.Framework\obj\Debug\GraphView.Framework.g.resources
+c:\Projects\GraphView\GraphView.Framework\obj\Debug\GraphView.Framework.dll
+c:\Projects\GraphView\GraphView.Framework\obj\Debug\GraphView.Framework.pdb
+c:\Projects\GraphView\GraphView.Framework\obj\Debug\GeneratedInternalTypeHelper.g.cs
+c:\Projects\GraphView\GraphView.Framework\obj\Debug\GraphView.Framework_MarkupCompile.cache
+c:\Projects\GraphView\GraphView.Framework\obj\Debug\GraphView.Framework_MarkupCompile.lref
+c:\Projects\GraphView\GraphView.Framework\obj\Debug\Themes\generic.baml
+C:\Projects\GraphView\GraphView.Framework\obj\Debug\GraphView.Framework.csprojResolveAssemblyReference.cache

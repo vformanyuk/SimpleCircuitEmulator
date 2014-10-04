@@ -1,0 +1,65 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:controls="clr-namespace:GraphView.Framework.Controls">
+    
+    <Style TargetType="{x:Type controls:NodeContainerControl}" x:Key="{x:Type controls:NodeContainerControl}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type controls:NodeContainerControl}">
+                    <ContentPresenter Content="{TemplateBinding Node}"></ContentPresenter>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Canvas.Left" Value="{Binding X, RelativeSource={RelativeSource Self}}"></Setter>
+        <Setter Property="Canvas.Top" Value="{Binding Y, RelativeSource={RelativeSource Self}}"></Setter>
+        <Setter Property="Panel.ZIndex" Value="5"></Setter>
+    </Style>
+    
+    <Style TargetType="{x:Type controls:ConnectionContainerControl}" x:Key="{x:Type controls:ConnectionContainerControl}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type controls:ConnectionContainerControl}">
+                    <Polyline Stroke="Red"
+                              StrokeThickness="2" 
+                              Points="{TemplateBinding Data}"></Polyline>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Panel.ZIndex" Value="12"></Setter>
+    </Style>
+    
+    <Style TargetType="{x:Type controls:ConnectorControl}" x:Key="{x:Type controls:ConnectorControl}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type controls:ConnectorControl}">
+                    <ContentPresenter Content="{TemplateBinding ConnectionPoint}"/>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Panel.ZIndex" Value="15"/>
+    </Style>
+
+    <Style TargetType="{x:Type controls:VirtualConnectionPoint}" x:Key="{x:Type controls:VirtualConnectionPoint}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type controls:VirtualConnectionPoint}">
+                    <Border BorderBrush="Green" BorderThickness="1" Width="10" Height="10" CornerRadius="5" Background="Green">
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Panel.ZIndex" Value="14"/>
+    </Style>
+    
+    <Style TargetType="{x:Type controls:SelectionRect}" x:Key="{x:Type controls:SelectionRect}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type controls:SelectionRect}">
+                    <Border BorderBrush="Black" Background="Gray" Opacity="0.3"></Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Panel.ZIndex" Value="20"></Setter>
+    </Style>
+
+</ResourceDictionary>
