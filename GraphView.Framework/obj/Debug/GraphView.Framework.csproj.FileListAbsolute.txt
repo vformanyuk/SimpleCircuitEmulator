@@ -8,3 +8,13 @@ c:\Projects\GraphView\GraphView.Framework\obj\Debug\GraphView.Framework_MarkupCo
 c:\Projects\GraphView\GraphView.Framework\obj\Debug\GraphView.Framework_MarkupCompile.lref
 c:\Projects\GraphView\GraphView.Framework\obj\Debug\Themes\generic.baml
 C:\Projects\GraphView\GraphView.Framework\obj\Debug\GraphView.Framework.csprojResolveAssemblyReference.cache
+C:\Projects\SimpleCurcuitEmulator\GraphView.Framework\bin\Debug\GraphView.Framework.dll
+C:\Projects\SimpleCurcuitEmulator\GraphView.Framework\bin\Debug\GraphView.Framework.pdb
+C:\Projects\SimpleCurcuitEmulator\GraphView.Framework\obj\Debug\GraphView.Framework.csprojResolveAssemblyReference.cache
+C:\Projects\SimpleCurcuitEmulator\GraphView.Framework\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Projects\SimpleCurcuitEmulator\GraphView.Framework\obj\Debug\GraphView.Framework_MarkupCompile.cache
+C:\Projects\SimpleCurcuitEmulator\GraphView.Framework\obj\Debug\GraphView.Framework_MarkupCompile.lref
+C:\Projects\SimpleCurcuitEmulator\GraphView.Framework\obj\Debug\Themes\generic.baml
+C:\Projects\SimpleCurcuitEmulator\GraphView.Framework\obj\Debug\GraphView.Framework.g.resources
+C:\Projects\SimpleCurcuitEmulator\GraphView.Framework\obj\Debug\GraphView.Framework.dll
+C:\Projects\SimpleCurcuitEmulator\GraphView.Framework\obj\Debug\GraphView.Framework.pdb
