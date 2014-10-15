@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Diagnostics;
 using System.Linq;
@@ -81,29 +82,8 @@ namespace GraphView.Framework.Controls
                     m_hittestElement = virtualConnector;
                 }
 
-                //var selectable = ((FrameworkElement) m_hittestElement).DataContext as INode;
-                //if (selectable != null)
-                //{
-                //    selectable.IsSelected = !selectable.IsSelected;
-
-                //    if (selectable.IsSelected)
-                //    {
-                //        m_selectedNodes.Add(selectable);
-                //    }
-                //    else
-                //    {
-                //        m_selectedNodes.Remove(selectable);
-                //    }
-                //}
-
                 m_hittestElement.CaptureMouse();
-                return;
             }
-
-            // Begin mass selection
-            m_hittestElement = new SelectionRect(m_currentPosition.X, m_currentPosition.Y);
-            Children.Add((UIElement) m_hittestElement);
-            m_hittestElement.CaptureMouse();
         }
 
         protected override void OnPreviewMouseMove(MouseEventArgs e)
@@ -163,6 +143,15 @@ namespace GraphView.Framework.Controls
                         rectangle.Height = rectangle.SelectionStartPoint.Y - position.Y;
                     }
                 }
+
+                // if no node selected and drag sitance reached add Selection Rectangle
+                if (m_hittestElement == null && (Math.Abs(m_currentPosition.X - m_originPoint.X) >= SystemParameters.MinimumHorizontalDragDistance ||
+                     Math.Abs(m_currentPosition.Y - m_originPoint.Y) >= SystemParameters.MinimumVerticalDragDistance))
+                {
+                    m_hittestElement = new SelectionRect(m_currentPosition.X, m_currentPosition.Y);
+                    Children.Add((UIElement)m_hittestElement);
+                    m_hittestElement.CaptureMouse();
+                }
             }
 
             m_currentPosition = position;
@@ -179,7 +168,8 @@ namespace GraphView.Framework.Controls
                 var point = m_hittestElement as VirtualConnectionPoint;
                 if (point != null)
                 {
-                    var hittest = this.AreaHitTest<ConnectorControl>(m_currentPosition, Constants.VirtualPointXOffset - 5);
+                    var hittest = this.AreaHitTest<ConnectorControl>(m_currentPosition,
+                        Constants.VirtualPointXOffset - 5);
                     if (hittest != null && hittest.ConnectionPoint.CanConnect(point.SourceConnectionPoint))
                     {
                         // if captured element is VirtualConnector and hittest element is ConnectionPoint - create connection
@@ -187,7 +177,8 @@ namespace GraphView.Framework.Controls
                             hittest.ConnectionPoint);
                         m_diagram.Connections.Add(newConnection);
 
-                        var connectionContainer = new ConnectionContainerControl(point.SourceConnectorControl, hittest, newConnection);
+                        var connectionContainer = new ConnectionContainerControl(point.SourceConnectorControl, hittest,
+                            newConnection);
                         m_connections.Add(newConnection, connectionContainer);
                         Children.Add(connectionContainer);
                     }
@@ -213,9 +204,9 @@ namespace GraphView.Framework.Controls
                     }
 
                     // find elements under selection rect
-                    var elements = this.AreaHitTest<NodeContainerControl>(startPoint, 
-                                                                          selectionRect.ActualWidth,
-                                                                          selectionRect.ActualHeight);
+                    var elements = this.AreaHitTest<NodeContainerControl>(startPoint,
+                        selectionRect.ActualWidth,
+                        selectionRect.ActualHeight);
 
                     foreach (var coveredNode in elements.Select(n => n.Node))
                     {
@@ -235,8 +226,21 @@ namespace GraphView.Framework.Controls
                     (Math.Abs(m_currentPosition.X - m_originPoint.X) <= SystemParameters.MinimumHorizontalDragDistance ||
                      Math.Abs(m_currentPosition.Y - m_originPoint.Y) <= SystemParameters.MinimumVerticalDragDistance))
                 {
-                    node.Node.IsSelected = !node.Node.IsSelected;
-                    m_selectedNodes.Clear();
+                    if (m_selectedNodes.Count >= 1) // after mass selection remove selection from nodes other that clicked one
+                    {
+                        var removeSelection = m_selectedNodes.Where(n => !n.Equals(node.Node)).ToList();
+                        foreach (var selectedNode in removeSelection)
+                        {
+                            selectedNode.IsSelected = false;
+                            m_selectedNodes.Remove(selectedNode);
+                        }
+
+                        ToggleSelection(node.Node);
+                    }
+                    else
+                    {
+                        ToggleSelection(node.Node);
+                    }
                 }
 
                 var connectionCtrl = m_hittestElement as ConnectionContainerControl;
@@ -247,8 +251,12 @@ namespace GraphView.Framework.Controls
                     {
                         connection.IsSelected = !connection.IsSelected;
                     }
-                    return;
                 }
+            }
+            else
+            {
+                // click on canvas clears selection
+                m_selectedNodes.Clear();
             }
 
             m_hittestElement = null;
@@ -265,6 +273,23 @@ namespace GraphView.Framework.Controls
                 var control = new NodeContainerControl(node);
                 m_nodesSet.Add(node, control);
                 Children.Add(control);
+            }
+        }
+
+        /// <summary>
+        /// Toggles node selection.
+        /// </summary>
+        /// <param name="node">The node.</param>
+        private void ToggleSelection(INode node)
+        {
+            node.IsSelected = !node.IsSelected;
+            if (node.IsSelected)
+            {
+                m_selectedNodes.Add(node);
+            }
+            else
+            {
+                m_selectedNodes.Remove(node);
             }
         }
 

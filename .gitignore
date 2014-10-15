@@ -41,3 +41,10 @@ Icon
 Network Trash Folder
 Temporary Items
 .apdisk
+
+GraphView.Framework/bin/Debug/GraphView.Framework.dll
+GraphView.Framework/bin/Debug/GraphView.Framework.dll
+*.pdb
+*.dll
+*.cache
+*.exe

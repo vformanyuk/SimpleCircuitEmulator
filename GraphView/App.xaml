@@ -6,7 +6,7 @@
              StartupUri="MainWindow.xaml">
     <Application.Resources>
          <DataTemplate DataType="{x:Type graphView:CustomNode}">
-            <Border MinHeight="50" MinWidth="50" BorderBrush="Blue" BorderThickness="2">
+            <Border MinHeight="50" MinWidth="50" BorderBrush="Blue" BorderThickness="2" x:Name="NodeBorder">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"></ColumnDefinition>
@@ -16,6 +16,11 @@
                     <controls:ConnectorControl Grid.Column="1" VerticalAlignment="Top" ConnectionPoint="{Binding InputConnector}"/>
                 </Grid>
             </Border>
+             <DataTemplate.Triggers>
+                 <DataTrigger Binding="{Binding IsSelected}" Value="True">
+                     <Setter TargetName="NodeBorder" Property="BorderBrush" Value="Red"></Setter>
+                 </DataTrigger>
+             </DataTemplate.Triggers>
          </DataTemplate>
         
         <DataTemplate DataType="{x:Type graphView:Connector}">
