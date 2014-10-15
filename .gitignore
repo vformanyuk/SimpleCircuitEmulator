@@ -48,3 +48,15 @@ GraphView.Framework/bin/Debug/GraphView.Framework.dll
 *.dll
 *.cache
 *.exe
+GraphView.Framework/bin/Debug/GraphView.Framework.dll
+GraphView.Framework/bin/Debug/GraphView.Framework.pdb
+GraphView.Framework/obj/Debug/GraphView.Framework.dll
+GraphView.Framework/obj/Debug/GraphView.Framework.pdb
+GraphView/bin/Debug/GraphView.exe
+GraphView/bin/Debug/GraphView.Framework.dll
+GraphView/bin/Debug/GraphView.Framework.pdb
+GraphView/bin/Debug/GraphView.pdb
+GraphView/obj/Debug/GraphView.csprojResolveAssemblyReference.cache
+GraphView/obj/Debug/GraphView.exe
+GraphView/obj/Debug/GraphView.pdb
+*.exe

@@ -98,10 +98,14 @@ namespace GraphView.Framework.Controls
                     node.X += position.X - m_currentPosition.X;
                     node.Y += position.Y - m_currentPosition.Y;
 
-                    foreach (var selectedNode in m_selectedNodes.Where(n => n != node.DataContext))
+                    var nodeContext = node.DataContext as INode;
+                    if (nodeContext != null && nodeContext.IsSelected)
                     {
-                        selectedNode.X += position.X - m_currentPosition.X;
-                        selectedNode.Y += position.Y - m_currentPosition.Y;
+                        foreach (var selectedNode in m_selectedNodes.Where(n => n != nodeContext))
+                        {
+                            selectedNode.X += position.X - m_currentPosition.X;
+                            selectedNode.Y += position.Y - m_currentPosition.Y;
+                        }
                     }
 
                     var virtualPoint = m_hittestElement as VirtualConnectionPoint;
@@ -168,8 +172,7 @@ namespace GraphView.Framework.Controls
                 var point = m_hittestElement as VirtualConnectionPoint;
                 if (point != null)
                 {
-                    var hittest = this.AreaHitTest<ConnectorControl>(m_currentPosition,
-                        Constants.VirtualPointXOffset - 5);
+                    var hittest = this.AreaHitTest<ConnectorControl>(m_currentPosition, Constants.VirtualPointXOffset - 5);
                     if (hittest != null && hittest.ConnectionPoint.CanConnect(point.SourceConnectionPoint))
                     {
                         // if captured element is VirtualConnector and hittest element is ConnectionPoint - create connection
@@ -194,14 +197,21 @@ namespace GraphView.Framework.Controls
                 }
 
                 var selectionRect = m_hittestElement as SelectionRect;
-                if (selectionRect != null)
+                if (selectionRect != null) // mass selection
                 {
-                    var startPoint = m_currentPosition;
-                    if (selectionRect.SelectionStartPoint.X < m_currentPosition.X ||
-                        selectionRect.SelectionStartPoint.Y < m_currentPosition.Y)
+                    double selectionStartX = m_currentPosition.X;
+                    double selectionStartY = m_currentPosition.Y;
+
+                    if (selectionRect.SelectionStartPoint.X < selectionStartX)
                     {
-                        startPoint = selectionRect.SelectionStartPoint;
+                        selectionStartX = selectionRect.SelectionStartPoint.X;
                     }
+                    if (selectionRect.SelectionStartPoint.Y < selectionStartY)
+                    {
+                        selectionStartY = selectionRect.SelectionStartPoint.Y;
+                    }
+
+                    var startPoint = new Point(selectionStartX, selectionStartY);
 
                     // find elements under selection rect
                     var elements = this.AreaHitTest<NodeContainerControl>(startPoint,
@@ -210,11 +220,7 @@ namespace GraphView.Framework.Controls
 
                     foreach (var coveredNode in elements.Select(n => n.Node))
                     {
-                        coveredNode.IsSelected = true;
-                        if (!m_selectedNodes.Contains(coveredNode))
-                        {
-                            m_selectedNodes.Add(coveredNode);
-                        }
+                        ToggleSelection(coveredNode, true);
                     }
 
                     // remove selection rectangle
@@ -223,23 +229,22 @@ namespace GraphView.Framework.Controls
 
                 var node = m_hittestElement as NodeContainerControl;
                 if (node != null && // single node selection
-                    (Math.Abs(m_currentPosition.X - m_originPoint.X) <= SystemParameters.MinimumHorizontalDragDistance ||
-                     Math.Abs(m_currentPosition.Y - m_originPoint.Y) <= SystemParameters.MinimumVerticalDragDistance))
+                    Math.Abs(m_currentPosition.X - m_originPoint.X) <= SystemParameters.MinimumHorizontalDragDistance &&
+                    Math.Abs(m_currentPosition.Y - m_originPoint.Y) <= SystemParameters.MinimumVerticalDragDistance)
                 {
                     if (m_selectedNodes.Count >= 1) // after mass selection remove selection from nodes other that clicked one
                     {
                         var removeSelection = m_selectedNodes.Where(n => !n.Equals(node.Node)).ToList();
                         foreach (var selectedNode in removeSelection)
                         {
-                            selectedNode.IsSelected = false;
-                            m_selectedNodes.Remove(selectedNode);
+                            ToggleSelection(selectedNode, false);
                         }
 
-                        ToggleSelection(node.Node);
+                        ToggleSelection(node.Node, true);
                     }
                     else
                     {
-                        ToggleSelection(node.Node);
+                        ToggleSelection(node.Node, !node.Node.IsSelected);
                     }
                 }
 
@@ -256,6 +261,10 @@ namespace GraphView.Framework.Controls
             else
             {
                 // click on canvas clears selection
+                foreach (var selectedNode in m_selectedNodes)
+                {
+                    selectedNode.IsSelected = false;
+                }
                 m_selectedNodes.Clear();
             }
 
@@ -280,9 +289,10 @@ namespace GraphView.Framework.Controls
         /// Toggles node selection.
         /// </summary>
         /// <param name="node">The node.</param>
-        private void ToggleSelection(INode node)
+        /// <param name="isSelected">if set to <c>true</c> [is selected].</param>
+        private void ToggleSelection(INode node, bool isSelected)
         {
-            node.IsSelected = !node.IsSelected;
+            node.IsSelected = isSelected;
             if (node.IsSelected)
             {
                 m_selectedNodes.Add(node);
