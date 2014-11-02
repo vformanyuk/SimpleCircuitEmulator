@@ -1,13 +1,22 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.30723.0
-MinimumVisualStudioVersion = 10.0.40219.1
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GraphView", "GraphView\GraphView.csproj", "{F0264449-BC02-459A-889D-9522B7A8EA8F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GraphView.Framework", "GraphView.Framework\GraphView.Framework.csproj", "{51DFDCE5-EE7D-4794-B37E-2C37588633C0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GraphView.Infrastructure", "GraphView.Infrastructure\GraphView.Infrastructure.csproj", "{53F5AEC9-06AD-459C-BC7C-5392007C980D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CircuitElements", "CircuitElements", "{A8206B2E-B4B0-47FF-9CC0-24F66222CB86}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DCSource", "DCSource\DCSource.csproj", "{EBD12021-E219-489A-9CD4-4BCC57E6DA90}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{675A0120-2000-4F49-9DB0-E5C303F354B8}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,8 +36,15 @@ Global
 		{53F5AEC9-06AD-459C-BC7C-5392007C980D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{53F5AEC9-06AD-459C-BC7C-5392007C980D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{53F5AEC9-06AD-459C-BC7C-5392007C980D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EBD12021-E219-489A-9CD4-4BCC57E6DA90}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EBD12021-E219-489A-9CD4-4BCC57E6DA90}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EBD12021-E219-489A-9CD4-4BCC57E6DA90}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EBD12021-E219-489A-9CD4-4BCC57E6DA90}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{EBD12021-E219-489A-9CD4-4BCC57E6DA90} = {A8206B2E-B4B0-47FF-9CC0-24F66222CB86}
 	EndGlobalSection
 EndGlobal
