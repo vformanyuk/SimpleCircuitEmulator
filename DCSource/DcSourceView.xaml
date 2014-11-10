@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="DCSource.DcElement"
+﻿<UserControl x:Class="DCSource.DcSourceView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 

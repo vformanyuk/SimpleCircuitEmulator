@@ -4,8 +4,8 @@
     {
         string Name { get; }
 
-        ICircuitElement GetCircuitElement();
+        CircuitElement GetCircuitElement();
 
-        ToolbarElement ToolbarElement { get; }
+        IToolbarElement ToolbarElement { get; }
     }
 }

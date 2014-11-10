@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
+﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using GraphView.Framework.Interfaces;
 using GraphView.Infrastructure.Annotations;
 using GraphView.Infrastructure.Interfaces;
@@ -13,16 +8,16 @@ namespace GraphView.Infrastructure.FrameworkDefaults
 {
     public class Connector : IConnectionPoint, INotifyPropertyChanged
     {
-        public Connector(ICircuitElement hostingElement, ConnectorType type)
+        public Connector(CircuitElement hostingElement, ConnectorType type)
         {
             Type = type;
             Element = hostingElement;
         }
 
-        public ICircuitElement Element { get; private set; }
+        public CircuitElement Element { get; private set; }
         public ConnectorType Type { get; private set; }
 
-        public bool IsConnected
+        public virtual bool IsConnected
         {
             get { return _isConnected; }
             set
@@ -35,7 +30,7 @@ namespace GraphView.Infrastructure.FrameworkDefaults
 
         public virtual bool CanConnect(Connector connector)
         {
-            return true;
+            return Type == ConnectorType.Output && connector.Type == ConnectorType.Output;
         }
 
         bool IConnectionPoint.CanConnect(IConnectionPoint connectionPoint)

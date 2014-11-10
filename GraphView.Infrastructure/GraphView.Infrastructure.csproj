@@ -43,11 +43,11 @@
   <ItemGroup>
     <Compile Include="ConnectorType.cs" />
     <Compile Include="FrameworkDefaults\Connector.cs" />
-    <Compile Include="Interfaces\ICircuitElement.cs" />
+    <Compile Include="CircuitElement.cs" />
     <Compile Include="Interfaces\IGraphViewElementPlugin.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ToolbarElement.cs" />
+    <Compile Include="Interfaces\IToolbarElement.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GraphView.Framework\GraphView.Framework.csproj">
