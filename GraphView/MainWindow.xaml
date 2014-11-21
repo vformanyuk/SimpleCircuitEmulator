@@ -14,8 +14,23 @@
         </Grid.RowDefinitions>
         <StackPanel>
             <Button Content="Power Switch" Click="ButtonBase_OnClick"></Button>
+            <ListBox ItemsSource="{Binding Path=Plugins}" PreviewMouseMove="ToolbarMouseMove"
+                     SelectionMode="Single" SelectedItem="{Binding Path=SelectedItem, Mode=OneWayToSource}">
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="{x:Type ListBoxItem}">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate>
+                                    <ContentControl Content="{Binding Path=ToolbarElement.View}"></ContentControl>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </ListBox.ItemContainerStyle>
+            </ListBox>
         </StackPanel>
-        <controls:DiagramCanvasControl Grid.Column="1" Diagram="{Binding Path=Diagram}"/>
-        <ListBox Grid.Row="1" Grid.ColumnSpan="2"></ListBox>
+        <controls:DiagramCanvasControl Grid.Column="1" Grid.Row="0" Diagram="{Binding Path=Diagram}"
+                                       VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
+                                       AllowDrop="True" Drop="DiagramDrop"/>
     </Grid>
 </Window>

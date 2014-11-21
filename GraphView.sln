@@ -1,7 +1,12 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GraphView", "GraphView\GraphView.csproj", "{F0264449-BC02-459A-889D-9522B7A8EA8F}"
+	ProjectSection(ProjectDependencies) = postProject
+		{EBD12021-E219-489A-9CD4-4BCC57E6DA90} = {EBD12021-E219-489A-9CD4-4BCC57E6DA90}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GraphView.Framework", "GraphView.Framework\GraphView.Framework.csproj", "{51DFDCE5-EE7D-4794-B37E-2C37588633C0}"
 EndProject

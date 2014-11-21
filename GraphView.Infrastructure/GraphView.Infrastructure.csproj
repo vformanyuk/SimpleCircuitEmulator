@@ -41,9 +41,10 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CircuitElement.cs" />
     <Compile Include="ConnectorType.cs" />
     <Compile Include="FrameworkDefaults\Connector.cs" />
-    <Compile Include="CircuitElement.cs" />
+    <Compile Include="FrameworkDefaults\DiagramNode.cs" />
     <Compile Include="Interfaces\IGraphViewElementPlugin.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

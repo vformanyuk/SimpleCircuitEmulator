@@ -10,7 +10,6 @@ namespace DCSource
         public DcSourceView()
         {
             InitializeComponent();
-            DataContext = new DcSourceViewModel();
         }
     }
 }

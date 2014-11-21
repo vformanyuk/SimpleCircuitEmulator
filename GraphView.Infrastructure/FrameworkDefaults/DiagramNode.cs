@@ -2,7 +2,7 @@
 using System.Runtime.CompilerServices;
 using GraphView.Framework.Interfaces;
 
-namespace GraphView.Framework
+namespace GraphView.Infrastructure.FrameworkDefaults
 {
     public class DiagramNode : INode, INotifyPropertyChanged
     {
@@ -66,9 +66,20 @@ namespace GraphView.Framework
 
         private string m_name;
         private double m_x, m_y;
+        private bool m_isSelected;
 
         #endregion
 
-        public virtual bool IsSelected { get; set; }
+        public virtual bool IsSelected
+        {
+            get { return m_isSelected; }
+            set
+            {
+                if (m_isSelected == value) return;
+
+                m_isSelected = value;
+                OnPropertyChanged();
+            }
+        }
     }
 }

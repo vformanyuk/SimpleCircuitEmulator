@@ -3,29 +3,16 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:graphView="clr-namespace:GraphView"
              xmlns:controls="clr-namespace:GraphView.Framework.Controls;assembly=GraphView.Framework"
+             xmlns:infrastructure="clr-namespace:GraphView.Infrastructure;assembly=GraphView.Infrastructure"
+             xmlns:frameworkDefaults="clr-namespace:GraphView.Infrastructure.FrameworkDefaults;assembly=GraphView.Infrastructure"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         <DataTemplate DataType="{x:Type graphView:CustomNode}">
-            <Border MinHeight="50" MinWidth="50" BorderBrush="Blue" BorderThickness="2" x:Name="NodeBorder">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"></ColumnDefinition>
-                        <ColumnDefinition Width="15"></ColumnDefinition>
-                    </Grid.ColumnDefinitions>
-                    <TextBlock Text="{Binding Name}"></TextBlock>
-                    <controls:ConnectorControl Grid.Column="1" VerticalAlignment="Top" ConnectionPoint="{Binding InputConnector}"/>
-                </Grid>
-            </Border>
-             <DataTemplate.Triggers>
-                 <DataTrigger Binding="{Binding IsSelected}" Value="True">
-                     <Setter TargetName="NodeBorder" Property="BorderBrush" Value="Red"></Setter>
-                 </DataTrigger>
-             </DataTemplate.Triggers>
-         </DataTemplate>
+        <DataTemplate DataType="{x:Type infrastructure:CircuitElement}">
+            <ContentControl Content="{Binding View}"></ContentControl>
+        </DataTemplate>
         
-        <DataTemplate DataType="{x:Type graphView:Connector}">
-            <Border Width="10" Height="10" BorderBrush="Green" BorderThickness="1" CornerRadius="5" Background="GreenYellow">
-            </Border>
+        <DataTemplate DataType="{x:Type frameworkDefaults:Connector}">
+            <Border Width="10" Height="10" BorderBrush="Green" BorderThickness="1" CornerRadius="5" Background="GreenYellow"/>
         </DataTemplate>
     </Application.Resources>
 </Application>

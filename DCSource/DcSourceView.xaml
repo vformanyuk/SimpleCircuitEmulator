@@ -3,9 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:controls="clr-namespace:GraphView.Framework.Controls;assembly=GraphView.Framework" 
-             mc:Ignorable="d" Width="50" Height="50">
-    <Grid>
+             xmlns:controls="clr-namespace:GraphView.Framework.Controls;assembly=GraphView.Framework"
+             xmlns:dcSource="clr-namespace:DCSource"
+             mc:Ignorable="d" Width="60" Height="50"
+             d:DataContext="{d:DesignInstance d:Type=dcSource:DcSourceViewModel, IsDesignTimeCreatable=True}">
+    <Grid IsHitTestVisible="True" Background="Transparent">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"></ColumnDefinition>
             <ColumnDefinition Width="Auto"></ColumnDefinition>
@@ -14,6 +16,8 @@
         <TextBlock Text="DC" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="16" FontWeight="Bold"/>
         <Ellipse VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Stroke="Black" StrokeThickness="2"/>
         
-        <controls:ConnectorControl Grid.Column="1" HorizontalAlignment="Center" HorizontalContentAlignment="Center"/>
+        <controls:ConnectorControl Grid.Column="1" 
+                                   HorizontalAlignment="Center" HorizontalContentAlignment="Center"
+                                   ConnectionPoint="{Binding OutputDcConnectionPoint}"/>
     </Grid>
 </UserControl>

@@ -1,11 +1,12 @@
 ﻿using System.Windows;
-using GraphView.Framework;
-using GraphView.Framework.Interfaces;
+using GraphView.Infrastructure.FrameworkDefaults;
 
 namespace GraphView.Infrastructure
 {
     public class CircuitElement : DiagramNode
     {
-        public DependencyObject View { get; private set; }
+        public DependencyObject View { get; protected set; }
+
+
     }
 }

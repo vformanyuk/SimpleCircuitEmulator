@@ -55,7 +55,6 @@
     <Compile Include="Controls\VirtualConnectionPoint.cs" />
     <Compile Include="Converters\OffsetConverter.cs" />
     <Compile Include="Diagram.cs" />
-    <Compile Include="DiagramNode.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="Interfaces\IConnection.cs" />
     <Compile Include="Interfaces\IConnectionFactory.cs" />
