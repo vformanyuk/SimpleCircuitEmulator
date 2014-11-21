@@ -14,5 +14,9 @@
         <DataTemplate DataType="{x:Type frameworkDefaults:Connector}">
             <Border Width="10" Height="10" BorderBrush="Green" BorderThickness="1" CornerRadius="5" Background="GreenYellow"/>
         </DataTemplate>
+        
+        <DataTemplate DataType="{x:Type graphView:Connection}">
+            <Polyline Stroke="Black" StrokeThickness="2" Points="{Binding Path=Data}"></Polyline>
+        </DataTemplate>
     </Application.Resources>
 </Application>

@@ -11,12 +11,9 @@ namespace GraphView.Framework.Controls
     {
         #region Static fields
 
-        /// <summary>
-        /// The data property
-        /// </summary>
-        public static readonly DependencyProperty DataProperty = DependencyProperty.Register(
-            "Data", typeof (PointCollection), typeof (ConnectionContainerControl),
-            new PropertyMetadata(default(PointCollection)));
+        public static readonly DependencyProperty ConnectionProperty = DependencyProperty.Register(
+            "Connection", typeof (IConnection), typeof (ConnectionContainerControl),
+            new PropertyMetadata(default(IConnection)));
 
         #endregion
 
@@ -53,9 +50,9 @@ namespace GraphView.Framework.Controls
                 yprop.AddValueChanged(destination, PositionChanged);
             }
 
-            m_router = connection.Router;
             m_source = source;
             m_destination = destination;
+            Connection = connection;
             DataContext = connection;
             UpdateData();
         }
@@ -64,13 +61,10 @@ namespace GraphView.Framework.Controls
 
         #region Public properties
 
-        /// <summary>
-        /// Gets or sets the data for path geometry.
-        /// </summary>
-        public PointCollection Data
+        public IConnection Connection
         {
-            get { return (PointCollection) GetValue(DataProperty); }
-            set { SetValue(DataProperty, value); }
+            get { return (IConnection) GetValue(ConnectionProperty); }
+            set { SetValue(ConnectionProperty, value); }
         }
 
         #endregion
@@ -92,8 +86,7 @@ namespace GraphView.Framework.Controls
         /// </summary>
         private void UpdateData()
         {
-            Data = new PointCollection(m_router.CalculateGeometry(new Point(m_source.X, m_source.Y),
-                new Point(m_destination.X, m_destination.Y)));
+            Connection.UpdateConnectionPoints(new Point(m_source.X, m_source.Y), new Point(m_destination.X, m_destination.Y));
         }
 
         #endregion
@@ -101,8 +94,6 @@ namespace GraphView.Framework.Controls
         #region Private fields
 
         private readonly BaseNodeControl m_destination;
-
-        private readonly IRouter m_router;
         private readonly BaseNodeControl m_source;
 
         #endregion
