@@ -14,6 +14,7 @@
         </Grid.ColumnDefinitions>
         
         <TextBlock Text="DC" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="16" FontWeight="Bold"/>
+        <!-- add power on/off switch here -->
         <Ellipse VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Stroke="Black" StrokeThickness="2"/>
         
         <controls:ConnectorControl Grid.Column="1" 

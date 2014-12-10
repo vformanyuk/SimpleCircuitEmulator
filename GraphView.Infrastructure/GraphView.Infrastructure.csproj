@@ -43,9 +43,13 @@
   <ItemGroup>
     <Compile Include="CircuitElement.cs" />
     <Compile Include="ConnectorType.cs" />
+    <Compile Include="FrameworkDefaults\Connection.cs" />
     <Compile Include="FrameworkDefaults\Connector.cs" />
     <Compile Include="FrameworkDefaults\DiagramNode.cs" />
+    <Compile Include="FrameworkDefaults\InputConnector.cs" />
+    <Compile Include="FrameworkDefaults\OutputConnector.cs" />
     <Compile Include="Interfaces\IGraphViewElementPlugin.cs" />
+    <Compile Include="Interfaces\IObservableConnector.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Interfaces\IToolbarElement.cs" />
