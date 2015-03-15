@@ -1,37 +1,27 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using GraphView.Framework.Interfaces;
 using GraphView.Infrastructure.Annotations;
+using GraphView.Infrastructure.Interfaces;
 
 namespace GraphView.Infrastructure.FrameworkDefaults
 {
-    public class Connector : IConnectionPoint, INotifyPropertyChanged
+    public class Connector : IObservableConnector, INotifyPropertyChanged
     {
         #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Connector"/> class.
         /// </summary>
-        /// <param name="hostingElement">The hosting element.</param>
-        /// <param name="type">The type.</param>
-        public Connector(CircuitElement hostingElement, ConnectorType type)
+        public Connector()
         {
-            Type = type;
-            Element = hostingElement;
         }
 
-        #endregion
-
-        #region Public properties
-
-        /// <summary>
-        /// Gets element that current connector attached to.
-        /// </summary>
-        public CircuitElement Element { get; private set; }
-        /// <summary>
-        /// Gets connector type.
-        /// </summary>
-        public ConnectorType Type { get; private set; }
+        public Connector(Func<Connector, bool> canConnect)
+        {
+            m_canConnect = canConnect;
+        }
 
         #endregion
 
@@ -44,7 +34,7 @@ namespace GraphView.Infrastructure.FrameworkDefaults
         /// <returns></returns>
         public virtual bool CanConnect(Connector connector)
         {
-            return Type == ConnectorType.Output && connector.Type == ConnectorType.Output;
+            return m_canConnect == null || m_canConnect.Invoke(connector);
         }
 
         #endregion
@@ -97,7 +87,19 @@ namespace GraphView.Infrastructure.FrameworkDefaults
         #region Private fields
 
         private bool m_isConnected;
+        private readonly Func<Connector, bool> m_canConnect;
 
         #endregion
+
+        public void Input(double voltage)
+        {
+            var @event = OnVoltageChanged;
+            if (@event != null)
+            {
+                @event(this, voltage);
+            }
+        }
+
+        public event EventHandler<double> OnVoltageChanged;
     }
 }

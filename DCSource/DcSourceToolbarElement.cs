@@ -8,15 +8,7 @@ namespace DCSource
 {
     public class DcSourceToolbarElement : IToolbarElement
     {
-        private static DependencyObject s_view;
-
-        public DcSourceToolbarElement()
-        {
-            if (s_view == null)
-            {
-                s_view = new TextBlock(new Bold(new Run("DC")));
-            }
-        }
+        private static readonly DependencyObject s_view = new TextBlock(new Bold(new Run("DC")));
 
         public DependencyObject View
         {

@@ -202,13 +202,17 @@ namespace GraphView.Framework.Controls
                         // if captured element is VirtualConnector and hittest element is ConnectionPoint - create connection
                         var newConnection = m_diagram.ConnectionsFactory.CreateConnection(point.SourceConnectionPoint,
                             hittest.ConnectionPoint);
-                        m_diagram.Connections.Add(newConnection);
+                        if (newConnection != null)
+                        {
+                            m_diagram.Connections.Add(newConnection);
 
-                        // add connection contrainer control to canvas
-                        var connectionContainer = new ConnectionContainerControl(point.SourceConnectorControl, hittest,
-                            newConnection);
-                        m_connections.Add(newConnection, connectionContainer);
-                        Children.Add(connectionContainer);
+                            // add connection contrainer control to canvas
+                            var connectionContainer = new ConnectionContainerControl(point.SourceConnectorControl,
+                                hittest,
+                                newConnection);
+                            m_connections.Add(newConnection, connectionContainer);
+                            Children.Add(connectionContainer);
+                        }
                     }
 
                     // remove virtual connection and point

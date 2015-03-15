@@ -6,16 +6,15 @@ using System.Windows.Media;
 using GraphView.Framework.Interfaces;
 using GraphView.Framework.Routers;
 using GraphView.Infrastructure.Annotations;
-using GraphView.Infrastructure.Interfaces;
 
 namespace GraphView.Infrastructure.FrameworkDefaults
 {
-    public class Connection : IConnection, INotifyPropertyChanged, IDisposable
+    public class Connection : IConnection, INotifyPropertyChanged
     {
         #region Constructors
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Connection"/> class.
+        /// Initializes a new instance of the <see cref="ConductingConnection"/> class.
         /// </summary>
         /// <param name="source">The source.</param>
         /// <param name="destination">The destination.</param>
@@ -25,7 +24,7 @@ namespace GraphView.Infrastructure.FrameworkDefaults
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Connection"/> class.
+        /// Initializes a new instance of the <see cref="ConductingConnection"/> class.
         /// </summary>
         /// <param name="source">The source.</param>
         /// <param name="destination">The destination.</param>
@@ -35,28 +34,11 @@ namespace GraphView.Infrastructure.FrameworkDefaults
             StartPoint = source;
             EndPoint = destination;
             Router = router;
-
-            var observable = source as IObservableConnector;
-            if (observable != null)
-            {
-                m_subscriptionToken = observable.Subscribe(destination);
-            }
         }
 
         #endregion
 
         #region Public Methods
-
-        /// <summary>
-        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
-        /// </summary>
-        public void Dispose()
-        {
-            if (m_subscriptionToken != null)
-            {
-                m_subscriptionToken.Dispose();
-            }
-        }
 
         /// <summary>
         /// Updates the connection points.
@@ -88,19 +70,19 @@ namespace GraphView.Infrastructure.FrameworkDefaults
         /// <summary>
         /// Gets the start point.
         /// </summary>
-        public IConnectionPoint StartPoint { get; private set; }
+        public IConnectionPoint StartPoint { get; protected set; }
         /// <summary>
         /// Gets the end point.
         /// </summary>
-        public IConnectionPoint EndPoint { get; private set; }
+        public IConnectionPoint EndPoint { get; protected set; }
         /// <summary>
         /// Gets the router which calculates points for connection.
         /// </summary>
-        public IRouter Router { get; private set; }
+        public IRouter Router { get; protected set; }
         /// <summary>
         /// Gets the points collection which is used to render the connection.
         /// </summary>
-        public PointCollection Data { get; private set; }
+        public PointCollection Data { get; protected set; }
 
         public bool IsSelected { get; set; }
 
@@ -109,15 +91,6 @@ namespace GraphView.Infrastructure.FrameworkDefaults
         #region INotifyPropertyChanged Members
 
         public event PropertyChangedEventHandler PropertyChanged;
-
-        #endregion
-
-        #region Private fields
-
-        /// <summary>
-        /// The subscription token for output connector
-        /// </summary>
-        private readonly IDisposable m_subscriptionToken;
 
         #endregion
     }

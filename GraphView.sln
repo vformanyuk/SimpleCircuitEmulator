@@ -23,6 +23,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{675A01
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Diod", "Diod\Diod.csproj", "{72D2C8B4-FEA1-4843-8BA5-737DEF857403}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,11 +47,16 @@ Global
 		{EBD12021-E219-489A-9CD4-4BCC57E6DA90}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EBD12021-E219-489A-9CD4-4BCC57E6DA90}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EBD12021-E219-489A-9CD4-4BCC57E6DA90}.Release|Any CPU.Build.0 = Release|Any CPU
+		{72D2C8B4-FEA1-4843-8BA5-737DEF857403}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{72D2C8B4-FEA1-4843-8BA5-737DEF857403}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{72D2C8B4-FEA1-4843-8BA5-737DEF857403}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{72D2C8B4-FEA1-4843-8BA5-737DEF857403}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{EBD12021-E219-489A-9CD4-4BCC57E6DA90} = {A8206B2E-B4B0-47FF-9CC0-24F66222CB86}
+		{72D2C8B4-FEA1-4843-8BA5-737DEF857403} = {A8206B2E-B4B0-47FF-9CC0-24F66222CB86}
 	EndGlobalSection
 EndGlobal

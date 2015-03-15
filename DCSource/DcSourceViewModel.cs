@@ -11,7 +11,7 @@ namespace DCSource
         public DcSourceViewModel()
         {
             View = new DcSourceView { DataContext = this };
-            OutputDcConnectionPoint = new OutputConnector<double>(this);
+            OutputDcConnectionPoint = new Connector();
         }
     }
 }

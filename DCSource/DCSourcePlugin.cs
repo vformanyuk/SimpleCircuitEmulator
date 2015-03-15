@@ -8,15 +8,11 @@ namespace DCSource
     [Export(typeof(IGraphViewElementPlugin))]
     public class DcSourcePlugin : IGraphViewElementPlugin
     {
-        private static IToolbarElement s_toolbarElement;
+        private static readonly IToolbarElement s_toolbarElement = new DcSourceToolbarElement();
 
         public DcSourcePlugin()
         {
             Name = "Dc Source";
-            if (s_toolbarElement == null)
-            {
-                s_toolbarElement = new DcSourceToolbarElement();
-            }
         }
 
         public string Name { get; private set; }

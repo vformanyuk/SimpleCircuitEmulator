@@ -3,8 +3,10 @@ using GraphView.Framework.Interfaces;
 
 namespace GraphView.Infrastructure.Interfaces
 {
-    public interface IObservableConnector
+    public interface IObservableConnector : IConnectionPoint
     {
-        IDisposable Subscribe(IConnectionPoint connector);
+        void Input(double voltage);
+
+        event EventHandler<double> OnVoltageChanged;
     }
 }
