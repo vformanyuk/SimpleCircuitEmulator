@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.Diagnostics;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -87,6 +88,7 @@ namespace GraphView.Framework.Controls
                     }
 
                     // if it is connector - create virtual connection
+                    // virtual elements excluded from hit test
                     var virtualConnector = new VirtualConnectionPoint(sourceConnector)
                     {
                         X = m_currentPosition.X,
@@ -96,7 +98,7 @@ namespace GraphView.Framework.Controls
 
                     var virtualConnection = new VirtualConnection(sourceConnector.ConnectionPoint);
                     var virtualConnectionContainer = new ConnectionContainerControl(sourceConnector, virtualConnector,
-                        virtualConnection);
+                        virtualConnection, false);
                     m_connections.Add(virtualConnection, virtualConnectionContainer);
                     Children.Add(virtualConnectionContainer);
 
@@ -137,11 +139,18 @@ namespace GraphView.Framework.Controls
 
                     var hittest = this.AreaHitTest<ConnectorControl>(m_currentPosition,
                         Constants.VirtualPointXOffset - 5);
+
                     if (hittest != null)
                     {
                         Mouse.SetCursor(hittest.ConnectionPoint.CanConnect(virtualPoint.SourceConnectionPoint)
                             ? Cursors.Hand
                             : Cursors.No);
+                    }
+
+                    var noneVirtualConnection = this.HitTest<ConnectionContainerControl>(new Point(virtualPoint.X, virtualPoint.Y));
+                    if (noneVirtualConnection != null)
+                    {
+                        Mouse.SetCursor(Cursors.Hand);
                     }
                 }
 
@@ -171,7 +180,7 @@ namespace GraphView.Framework.Controls
                     }
                 }
 
-                // if no node selected and drag sitance reached add Selection Rectangle
+                // if no node selected and drag sitance riched add Selection Rectangle
                 if (m_hittestElement == null && 
                     (Math.Abs(m_currentPosition.X - m_originPoint.X) >= SystemParameters.MinimumHorizontalDragDistance ||
                      Math.Abs(m_currentPosition.Y - m_originPoint.Y) >= SystemParameters.MinimumVerticalDragDistance))
@@ -209,6 +218,59 @@ namespace GraphView.Framework.Controls
                             // add connection contrainer control to canvas
                             var connectionContainer = new ConnectionContainerControl(point.SourceConnectorControl,
                                 hittest,
+                                newConnection);
+                            m_connections.Add(newConnection, connectionContainer);
+                            Children.Add(connectionContainer);
+                        }
+                    }
+
+                    var noneVirtualConnection = this.HitTest<ConnectionContainerControl>(m_currentPosition);
+                    if (noneVirtualConnection != null)
+                    {
+                        var oldSource = noneVirtualConnection.Source;
+                        var oldDestination = noneVirtualConnection.Destination;
+                        var connectionContext = noneVirtualConnection.Connection;
+
+                        ConnectorControl middleConnector = new ConnectorControl
+                        {
+                            X = m_currentPosition.X,
+                            Y = m_currentPosition.Y,
+                            Width = 10,
+                            Height = 10,
+                            ConnectionPoint = Activator.CreateInstance(noneVirtualConnection.Connection.StartPoint.GetType()) as IConnectionPoint
+                        };
+
+                        Canvas.SetLeft(middleConnector, middleConnector.X - middleConnector.Width / 2);
+                        Canvas.SetTop(middleConnector, middleConnector.Y - middleConnector.Height / 2);
+
+                        Children.Remove(m_connections[connectionContext]);
+                        m_connections.Remove(connectionContext);
+
+                        Children.Add(middleConnector);
+
+                        var sourceToMiddle = m_diagram.ConnectionsFactory.CreateConnection(
+                            connectionContext.StartPoint, middleConnector.ConnectionPoint);
+                        var middleToTarget = m_diagram.ConnectionsFactory.CreateConnection(
+                            middleConnector.ConnectionPoint, connectionContext.EndPoint);
+
+                        m_diagram.Connections.Add(sourceToMiddle);
+                        m_diagram.Connections.Add(middleToTarget);
+
+                        var sourceToMiddleContainer = new ConnectionContainerControl(oldSource, middleConnector, sourceToMiddle);
+                        m_connections.Add(sourceToMiddle, sourceToMiddleContainer);
+                        Children.Add(sourceToMiddleContainer);
+
+                        var middleToTargetContainer = new ConnectionContainerControl(middleConnector, oldDestination, middleToTarget);
+                        m_connections.Add(middleToTarget, middleToTargetContainer);
+                        Children.Add(middleToTargetContainer);
+
+                        // add connection from original node to middle connection point
+                        var newConnection = m_diagram.ConnectionsFactory.CreateConnection(point.SourceConnectionPoint, middleConnector.ConnectionPoint);
+                        if (newConnection != null)
+                        {
+                            m_diagram.Connections.Add(newConnection);
+                            var connectionContainer = new ConnectionContainerControl(point.SourceConnectorControl,
+                                middleConnector,
                                 newConnection);
                             m_connections.Add(newConnection, connectionContainer);
                             Children.Add(connectionContainer);

@@ -34,7 +34,8 @@ namespace GraphView.Framework.Controls
         /// <param name="source">The source.</param>
         /// <param name="destination">The destination.</param>
         /// <param name="connection">The connection.</param>
-        public ConnectionContainerControl(BaseNodeControl source, BaseNodeControl destination, IConnection connection)
+        /// <param name="noneVirtual">If connection is virtual it should be excluded from hit test.</param>
+        public ConnectionContainerControl(BaseNodeControl source, BaseNodeControl destination, IConnection connection, bool noneVirtual = true)
         {
             var xprop = DependencyPropertyDescriptor.FromProperty(BaseNodeControl.XProperty, typeof (ConnectorControl));
             if (xprop != null)
@@ -49,6 +50,8 @@ namespace GraphView.Framework.Controls
                 yprop.AddValueChanged(source, PositionChanged);
                 yprop.AddValueChanged(destination, PositionChanged);
             }
+
+            IsHitTestVisible = noneVirtual;
 
             m_source = source;
             m_destination = destination;
@@ -86,6 +89,7 @@ namespace GraphView.Framework.Controls
         /// </summary>
         private void UpdateData()
         {
+            // TODO: change container default left and top from NaN to proper X and Y
             Connection.UpdateConnectionPoints(new Point(m_source.X, m_source.Y), new Point(m_destination.X, m_destination.Y));
         }
 

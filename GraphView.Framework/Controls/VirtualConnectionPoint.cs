@@ -25,6 +25,8 @@ namespace GraphView.Framework.Controls
         {
             SourceConnectionPoint = sourceConnectionPoint.ConnectionPoint;
             SourceConnectorControl = sourceConnectionPoint;
+
+            IsHitTestVisible = false;
         }
 
         #endregion

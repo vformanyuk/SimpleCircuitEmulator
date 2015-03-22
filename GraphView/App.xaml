@@ -14,7 +14,13 @@
         </DataTemplate>
         
         <DataTemplate DataType="{x:Type frameworkDefaults:ConductingConnection}">
-            <Polyline Stroke="Black" StrokeThickness="2" Points="{Binding Path=Data}"></Polyline>
+            <Polyline Stroke="Black" StrokeThickness="2" Points="{Binding Path=Data}">
+                <Polyline.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Test"></MenuItem>
+                    </ContextMenu>
+                </Polyline.ContextMenu>
+            </Polyline>
         </DataTemplate>
     </Application.Resources>
 </Application>

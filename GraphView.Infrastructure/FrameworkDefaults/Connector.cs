@@ -11,10 +11,7 @@ namespace GraphView.Infrastructure.FrameworkDefaults
     {
         #region Constructors
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Connector"/> class.
-        /// </summary>
-        public Connector()
+        public Connector() : this(null)
         {
         }
 
