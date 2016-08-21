@@ -4,7 +4,7 @@
 library
 C#
 .cs
-C:\Projects\SimpleCurcuitEmulator\GraphView.Framework\obj\Debug\
+D:\Projects\SimpleCircuitEmulator\GraphView.Framework\obj\Debug\
 GraphView.Framework
 none
 false
@@ -12,9 +12,9 @@ DEBUG;TRACE
 
 1692892633
 
-271866653418
+26-1981816542
 141012385901
 Themes\generic.xaml;
 
-False
+True
 

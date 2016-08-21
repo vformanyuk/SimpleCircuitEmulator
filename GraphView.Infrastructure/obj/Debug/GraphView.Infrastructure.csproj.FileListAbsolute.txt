@@ -1,0 +1,7 @@
+D:\Projects\SimpleCircuitEmulator\GraphView.Infrastructure\bin\Debug\GraphView.Infrastructure.dll
+D:\Projects\SimpleCircuitEmulator\GraphView.Infrastructure\bin\Debug\GraphView.Infrastructure.pdb
+D:\Projects\SimpleCircuitEmulator\GraphView.Infrastructure\bin\Debug\GraphView.Framework.dll
+D:\Projects\SimpleCircuitEmulator\GraphView.Infrastructure\bin\Debug\GraphView.Framework.pdb
+D:\Projects\SimpleCircuitEmulator\GraphView.Infrastructure\obj\Debug\GraphView.Infrastructure.csprojResolveAssemblyReference.cache
+D:\Projects\SimpleCircuitEmulator\GraphView.Infrastructure\obj\Debug\GraphView.Infrastructure.dll
+D:\Projects\SimpleCircuitEmulator\GraphView.Infrastructure\obj\Debug\GraphView.Infrastructure.pdb
