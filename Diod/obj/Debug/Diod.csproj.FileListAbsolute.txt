@@ -1,0 +1,13 @@
+D:\Projects\SimpleCircuitEmulator\Diod\bin\Debug\Diod.dll
+D:\Projects\SimpleCircuitEmulator\Diod\bin\Debug\Diod.pdb
+D:\Projects\SimpleCircuitEmulator\Diod\bin\Debug\GraphView.Framework.dll
+D:\Projects\SimpleCircuitEmulator\Diod\bin\Debug\GraphView.Infrastructure.dll
+D:\Projects\SimpleCircuitEmulator\Diod\bin\Debug\GraphView.Framework.pdb
+D:\Projects\SimpleCircuitEmulator\Diod\bin\Debug\GraphView.Infrastructure.pdb
+D:\Projects\SimpleCircuitEmulator\Diod\obj\Debug\Diod.csprojResolveAssemblyReference.cache
+D:\Projects\SimpleCircuitEmulator\Diod\obj\Debug\DiodView.baml
+D:\Projects\SimpleCircuitEmulator\Diod\obj\Debug\DiodView.g.cs
+D:\Projects\SimpleCircuitEmulator\Diod\obj\Debug\Diod_MarkupCompile.cache
+D:\Projects\SimpleCircuitEmulator\Diod\obj\Debug\Diod.g.resources
+D:\Projects\SimpleCircuitEmulator\Diod\obj\Debug\Diod.dll
+D:\Projects\SimpleCircuitEmulator\Diod\obj\Debug\Diod.pdb

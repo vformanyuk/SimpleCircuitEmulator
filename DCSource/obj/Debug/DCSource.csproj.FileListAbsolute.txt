@@ -1,0 +1,14 @@
+D:\Projects\SimpleCircuitEmulator\DCSource\bin\Debug\DCSource.dll
+D:\Projects\SimpleCircuitEmulator\DCSource\bin\Debug\DCSource.pdb
+D:\Projects\SimpleCircuitEmulator\DCSource\bin\Debug\GraphView.Framework.dll
+D:\Projects\SimpleCircuitEmulator\DCSource\bin\Debug\GraphView.Infrastructure.dll
+D:\Projects\SimpleCircuitEmulator\DCSource\bin\Debug\GraphView.Framework.pdb
+D:\Projects\SimpleCircuitEmulator\DCSource\bin\Debug\GraphView.Infrastructure.pdb
+D:\Projects\SimpleCircuitEmulator\DCSource\obj\Debug\DCSource.csprojResolveAssemblyReference.cache
+D:\Projects\SimpleCircuitEmulator\DCSource\obj\Debug\DcSourceView.g.cs
+D:\Projects\SimpleCircuitEmulator\DCSource\obj\Debug\DCSource_MarkupCompile.cache
+D:\Projects\SimpleCircuitEmulator\DCSource\obj\Debug\DCSource_MarkupCompile.lref
+D:\Projects\SimpleCircuitEmulator\DCSource\obj\Debug\DcSourceView.baml
+D:\Projects\SimpleCircuitEmulator\DCSource\obj\Debug\DCSource.g.resources
+D:\Projects\SimpleCircuitEmulator\DCSource\obj\Debug\DCSource.dll
+D:\Projects\SimpleCircuitEmulator\DCSource\obj\Debug\DCSource.pdb
